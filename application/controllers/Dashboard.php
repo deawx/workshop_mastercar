@@ -27,9 +27,16 @@ class Dashboard extends Admin_Controller {
 	{
 		$post = $this->input->post();
 		if ($post) :
+
+			// echo '<pre>';
+			// print_r($post);
+			// echo '</pre>';
+
 			$quantity = array_filter($post['quantity']);
+			$price = array_filter($post['price']);
 			unset($post['DataTables_Table_0_length']);
 			unset($post['quantity']);
+			unset($post['price']);
 
 			if ($post['category'] === 'บันทึกจ่ายออก') :
 				foreach ($quantity as $_q => $q) :
@@ -40,7 +47,7 @@ class Dashboard extends Admin_Controller {
 				endforeach;
 			endif;
 
-			$save = $this->activity->create($post,$quantity);
+			$save = $this->activity->create($post,$quantity,$price);
 			if ($save) :
 				$this->session->set_flashdata(array('class'=>'success','value'=>'ท่านได้ทำการบันทึกข้อมูลการให้บริการเรียบร้อยแล้ว'));
 				redirect('dashboard');

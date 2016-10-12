@@ -6,7 +6,7 @@
     <a href="car" class="btn-box big span3"><i class="icon-truck"></i><b><?=$car;?></b>
       <p class="text-muted">ยานพาหนะที่บริการ</p>
     </a>
-    <a href="car" class="btn-box big span3"><i class="icon-cogs"></i><b><?=$material;?></b>
+    <a href="material" class="btn-box big span3"><i class="icon-cogs"></i><b><?=$material;?></b>
       <p class="text-muted">วัสดุ/อะไหล่</p>
     </a>
     <a href="" class="btn-box big span3"><i class="icon-bar-chart"></i><b><?=$out.'/'.$in;?></b>

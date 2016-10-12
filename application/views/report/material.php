@@ -15,7 +15,7 @@
   <div class="module-foot">
     <div class="control-group">
       <div class="controls clearfix">
-        <?=form_submit('', 'สั่งพิมพ์รายงานข้อมูล', array('class'=>'btn btn-primary'));?>
+        <?=form_submit('', 'เรียกดูรายงานข้อมูล', array('class'=>'btn btn-primary'));?>
       </div>
     </div>
     <?=form_close();?>

@@ -25,6 +25,10 @@ class Migration_Create_material_usage extends CI_Migration {
         'type' => 'INT',
         'constraint' => '5',
         'unsigned' => TRUE
+      ),
+      'price' => array(
+        'type' => 'INT',
+        'constraint' => '5'
       )
     ));
     $this->dbforge->add_key('id', TRUE);

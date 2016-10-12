@@ -28,7 +28,7 @@ class Migration_Create_car extends CI_Migration {
         'type' => 'VARCHAR',
         'constraint' => '10'
       ),
-      'date' => array(
+      'date_create' => array(
         'type' => 'VARCHAR',
         'constraint' => '10'
       ),

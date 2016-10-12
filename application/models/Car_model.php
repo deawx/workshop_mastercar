@@ -19,7 +19,7 @@ class Car_model extends MY_Model {
       array(
         'field' => 'identity',
         'label' => 'หมายเลขทะเบียน',
-        'rules' => 'required|max_length[100]'
+        'rules' => 'required|max_length[10]'
       )
     )
   );

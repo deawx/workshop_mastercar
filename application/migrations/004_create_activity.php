@@ -11,11 +11,6 @@ class Migration_Create_activity extends CI_Migration {
         'unsigned' => TRUE,
         'auto_increment' => TRUE
       ),
-      'admin_id' => array(
-        'type' => 'INT',
-        'constraint' => '5',
-        'unsigned' => TRUE
-      ),
       'customer_id' => array(
         'type' => 'INT',
         'constraint' => '5',
@@ -27,18 +22,18 @@ class Migration_Create_activity extends CI_Migration {
         'unsigned' => TRUE
       ),
       'category' => array(
-        'type' => 'ENUM("decrease","increase")',
-        'default' => 'decrease'
+        'type' => 'VARCHAR',
+        'constraint' => '50'
       ),
       'title' => array(
-        'type' => 'INT',
+        'type' => 'VARCHAR',
         'constraint' => '100'
       ),
       'detail' => array(
         'type' => 'TEXT',
         'null' => TRUE
       ),
-      'datetime' => array(
+      'date_create' => array(
         'type' => 'VARCHAR',
         'constraint' => '10'
       )

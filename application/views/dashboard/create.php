@@ -53,10 +53,9 @@ $materials = ($this->uri->segment(3)) ? $material_usage : $material;
           <tr>
             <th>ที่</th>
             <th>ชื่อรายการ</th>
-            <th>ชื่อยี่ห้อ</th>
-            <th>ขนาด</th>
-            <th>จำนวน</th>
             <th>คงเหลือ</th>
+            <th>จำนวน</th>
+            <th>ราคา/หน่วย</th>
           </tr>
         </thead>
         <tbody>
@@ -64,10 +63,17 @@ $materials = ($this->uri->segment(3)) ? $material_usage : $material;
             <tr>
               <td><?=++$_m;?></td>
               <td><?=anchor('material/create/'.$m['id'],$m['name']);?></td>
-              <td><?=$m['brand'];?></td>
-              <td><?=$m['size'];?></td>
-              <td><?=($this->uri->segment(3)) ? form_number(array('name'=>'quantity['.$m['id'].'_'.$m['amount'].']',$disabled=>TRUE),set_value('quantity',$m['quantity'])) : form_number(array('name'=>'quantity['.$m['id'].'_'.$m['amount'].']'),set_value('quantity'));?></td>
-              <th><?=($this->uri->segment(3)) ? '' : $m['amount'];?></th>
+              <th><?=($this->uri->segment(3))
+                ? 'out of stock'
+                : $m['amount'];?></th>
+              <td><?=($this->uri->segment(3))
+                ? form_number(array('name'=>'quantity['.$m['id'].'_'.$m['amount'].']',$disabled=>TRUE),set_value('quantity',$m['quantity']))
+                : form_number(array('name'=>'quantity['.$m['id'].'_'.$m['amount'].']'),set_value('quantity'));?>
+              </td>
+              <td><?=($this->uri->segment(3))
+                ? form_number(array('name'=>'price['.$m['id'].']',$disabled=>TRUE),set_value('price',$m['price']))
+                : form_number(array('name'=>'price['.$m['id'].']'),set_value('price'));?>
+              </td>
             </tr>
           <?php endforeach; ?>
         </tbody>
@@ -75,10 +81,9 @@ $materials = ($this->uri->segment(3)) ? $material_usage : $material;
           <tr>
             <th>ที่</th>
             <th>หัวข้อ</th>
-            <th>ชื่อยี่ห้อ</th>
-            <th>ขนาด</th>
-            <th>จำนวน</th>
             <th>คงเหลือ</th>
+            <th>จำนวน</th>
+            <th>ราคา/หน่วย</th>
           </tr>
         </tfoot>
       </table>

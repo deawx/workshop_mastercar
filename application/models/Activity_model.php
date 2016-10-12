@@ -19,7 +19,7 @@ class Activity_model extends MY_Model {
     )
   );
 
-  function create($post,$quantity)
+  function create($post,$quantity,$price)
   {
     $this->form_validation->set_rules($this->rules['activity']);
     if ($this->form_validation->run() === FALSE)
@@ -34,12 +34,25 @@ class Activity_model extends MY_Model {
     endif;
     $activity_id = $this->db->insert_id();
   	foreach ($quantity as $_q => $q) :
+      $_q = explode('_',$_q)[0];
   		if ($activity_id) :
-        $this->db->insert('material_usage',array('activity_id'=>$activity_id,'material_id'=>$_q,'quantity'=>$q));
+        $this->db->insert('material_usage',array(
+          'activity_id'=>$activity_id,
+          'material_id'=>$_q,
+          'quantity'=>$q,
+          'price'=>$price[$_q]
+        ));
   		else:
-        $this->db->set(array('activity_id'=>$post['id'],'material_id'=>$_q,'quantity'=>$q))->update('material_usage');
+        $this->db->set(array(
+          'activity_id'=>$post['id'],
+          'material_id'=>$_q,
+          'quantity'=>$q,
+          'price'=>$price[$_q]
+        ))->update('material_usage');
   		endif;
-      ($post['category'] === 'บันทึกจ่ายออก') ? $this->db->set('amount','amount-'.$q,FALSE) : $this->db->set('amount','amount+'.$q,FALSE);
+      ($post['category'] === 'บันทึกจ่ายออก')
+        ? $this->db->set('amount','amount-'.$q,FALSE)
+        : $this->db->set('amount','amount+'.$q,FALSE);
       $this->db->where('id',explode('_',$_q)[0])->update('material');
   	endforeach;
 
