@@ -20,6 +20,12 @@
   <?php echo script_tag('assets/scripts/datepicker/bootstrap.datepicker.min.js');?>
   <?php echo script_tag('assets/scripts/datepicker/bootstrap.datepicker.th.min.js');?>
   <?php echo script_tag('assets/scripts/common.js');?>
+  <style media="screen">
+    .sidebar a {
+      font-weight: bolder;
+      color: brown !important;
+    }
+  </style>
 </head>
 <body>
   <div class="navbar navbar-fixed-top">

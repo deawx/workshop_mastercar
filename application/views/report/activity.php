@@ -6,9 +6,15 @@
   </div>
   <div class="module-body">
     <div class="control-group">
-      <?=form_label('เลือกวันที่','date_create',array('class'=>'control-label'));?>
+      <?=form_label('เลือกวันที่เริ่ม','date_1',array('class'=>'control-label'));?>
       <div class="controls">
-        <?=form_input(array('name'=>'date_create','class'=>'datepicker span9','placeholder'=>'เลือกวันที่'));?>
+        <?=form_input(array('name'=>'date_1','class'=>'datepicker span9','placeholder'=>'เลือกวันที่เริ่ม'));?>
+      </div>
+    </div>
+    <div class="control-group">
+      <?=form_label('เลือกวันที่สิ้นสุด','date_2',array('class'=>'control-label'));?>
+      <div class="controls">
+        <?=form_input(array('name'=>'date_2','class'=>'datepicker span9','placeholder'=>'เลือกวันที่สิ้นสุด'));?>
       </div>
     </div>
     <div class="control-group">

@@ -62,11 +62,12 @@ class Report extends Admin_Controller {
 		$this->load->helper('download');
 
 		$table = $get['table'];
-		$date_create = $get['date_create'];
+		$date_1 = $get['date_1'];
+		$date_2 = $get['date_2'];
 		$category = $get['category'];
 
 		$filepath = realpath(APPPATH.'../assets/report');
-		$filename = $table.'_'.$date_create.'_'.$category.'_('.date('d-m-Y').').csv';
+		$filename = $table.'_'.$date_1.'_'.$date_2.'_'.$category.'_('.date('d-m-Y').').csv';
 
 		switch ($table) :
 		  case 'material':
@@ -78,23 +79,27 @@ class Report extends Admin_Controller {
 					->from('material as m');
 		   break;
 		 default:
-		 	if ($date_create)
-				$this->db->where('a.date_create',$date_create);
-
 			if ($category === 'บันทึกจ่ายออก')
-				$this->db->select('cs.fullname,cr.identity')->join('customer as cs','cs.id = a.customer_id')->join('car as cr','cr.id = a.car_id');
-
+			{
+				$this->db
+				->select('cs.fullname,cr.identity')
+				->join('customer as cs','cs.id = a.customer_id')
+				->join('car as cr','cr.id = a.car_id');
+			}
 		 	 $this->db
 			 	->select('a.category,a.title,a.detail,a.date_create')
 				->where('a.category',$category)
+				->where('a.date_create >=',$date_1)
+				->where('a.date_create <=',$date_2)
 			 	->from('activity as a');
 		   break;
 		endswitch;
 		$query = $this->db->get();
 
-		// echo '<pre>';
-		// print_r($this->db->get()->result_array());
-		// die();
+		echo '<pre>';
+		print_r($query->result_array());
+		echo '</pre>';
+		die();
 
 		$delimiter = ",";
 		$newline = "\r\n";

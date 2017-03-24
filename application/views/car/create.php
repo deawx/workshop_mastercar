@@ -27,13 +27,13 @@
     <div class="control-group">
       <div class="controls row-fluid">
         <?=form_label('รูปภาพ','picture',array('class'=>'span3'));?>
-        <?=form_upload(array('name'=>'picture','class'=>'span9'));?>
+        <?=form_upload(array('name'=>'picture','id'=>'picture','class'=>'span9'));?>
       </div>
     </div>
     <div class="control-group">
       <div class="controls row-fluid">
         <?=form_label('','',array('class'=>'span3'));?>
-        <?=img('assets/picture/'.$car['picture'],array('class'=>'img-responsive'));?>
+        <?=img('assets/picture/'.$car['picture'],'',array('id'=>'preview','class'=>'img-responsive'));?>
       </div>
     </div>
   </div>
