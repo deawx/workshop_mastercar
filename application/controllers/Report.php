@@ -67,18 +67,15 @@ class Report extends Admin_Controller {
 		$category = $get['category'];
 
 		$filepath = realpath(APPPATH.'../assets/report');
-		$filename = $table.'_'.$date_1.'_'.$date_2.'_'.$category.'_('.date('d-m-Y').').csv';
+		$filename = $table.'_'.$category.'_('.date('d-m-Y').').csv';
 
 		switch ($table) :
 		  case 'material':
-				if ($category)
-				 $this->db->where('a.category',$category);
-
 				$this->db
 					->select('m.*')
 					->from('material as m');
 		   break;
-		 default:
+		  case 'activity':
 			if ($category === 'บันทึกจ่ายออก')
 			{
 				$this->db
@@ -96,15 +93,16 @@ class Report extends Admin_Controller {
 		endswitch;
 		$query = $this->db->get();
 
-		echo '<pre>';
-		print_r($query->result_array());
-		echo '</pre>';
-		die();
+		// echo '<pre>';
+		// print_r($query->result_array());
+		// echo '</pre>';
+		// die();
 
 		$delimiter = ",";
 		$newline = "\r\n";
 		$enclosure = '"';
 		$export = $this->dbutil->csv_from_result($query, $delimiter, $newline, $enclosure);
+		echo $filepath.'/'.$filename.br();
 		if (write_file($filepath.'/'.$filename,"\xEF\xBB\xBF".$export)) :
 			$this->session->set_flashdata(array('class'=>'success','value'=>'ท่านได้ทำการบันทึกรายการเรียบร้อยแล้ว'));
 			redirect('report/'.$table);
