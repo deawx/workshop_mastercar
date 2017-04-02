@@ -67,7 +67,7 @@ class Report extends Admin_Controller {
 		$category = $get['category'];
 
 		$filepath = realpath(APPPATH.'../assets/report');
-		$filename = $table.'_'.$category.'_('.date('d-m-Y').').csv';
+		$filename = $table.'_'.('.date('d-m-Y').').csv';
 
 		switch ($table) :
 		  case 'material':
