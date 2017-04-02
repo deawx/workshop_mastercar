@@ -21,7 +21,8 @@ $materials = ($this->uri->segment(3)) ? $material_usage : $material;
       <div class="control-group">
         <div class="controls row-fluid">
           <?=form_label('เลือกรายการผู้ใช้บริการ','customer_id',array('class'=>'span3'));?>
-          <?=form_dropdown(array('name'=>'customer_id','required'=>TRUE),$customer,set_value('customer_id',$activity['customer_id']));?>
+          <!-- <?=form_dropdown(array('name'=>'customer_id','required'=>TRUE),$customer,set_value('customer_id',$activity['customer_id']));?> -->
+          <?=form_dropdown(array('name'=>'customer_id','required'=>TRUE,'onchange'=>"window.location='create?category=บันทึกจ่ายออก&customer_id='+this.value",$disabled=>TRUE),$customer,set_value('customer_id',$customer_id));?>
         </div>
       </div>
       <div class="control-group">

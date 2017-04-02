@@ -13,7 +13,8 @@
         <tr>
           <th>ที่</th>
           <th>ชื่อ-นามสกุล</th>
-          <th>เบอร์โทรศัพท์</th>
+          <th>เบอร์โทรศัพท์บ้าน</th>
+          <th>เบอร์โทรศัพท์มือถือ</th>
           <th>วันที่บันทึก</th>
         </tr>
       </thead>
@@ -22,7 +23,8 @@
           <tr>
             <td><?=++$_c;?></td>
             <td><?=anchor('customer/create/'.$c['id'],$c['fullname']);?></td>
-            <td><?=$c['phone'];?></td>
+            <td><?=$c['phone_home'];?></td>
+            <td><?=$c['phone_mobile'];?></td>
             <td><?=$c['date_create'];?></td>
           </tr>
         <?php endforeach; ?>
@@ -31,7 +33,8 @@
         <tr>
           <th>ที่</th>
           <th>ชื่อ-นามสกุล</th>
-          <th>เบอร์โทรศัพท์</th>
+          <th>เบอร์โทรศัพท์บ้าน</th>
+          <th>เบอร์โทรศัพท์มือถือ</th>
           <th>วันที่บันทึก</th>
         </tr>
       </tfoot>

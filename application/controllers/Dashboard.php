@@ -27,17 +27,14 @@ class Dashboard extends Admin_Controller {
 	{
 		$post = $this->input->post();
 		if ($post) :
-
 			// echo '<pre>';
 			// print_r($post);
 			// echo '</pre>';
-
 			$quantity = array_filter($post['quantity']);
 			$price = array_filter($post['price']);
 			unset($post['DataTables_Table_0_length']);
 			unset($post['quantity']);
 			unset($post['price']);
-
 			if ($post['category'] === 'บันทึกจ่ายออก') :
 				foreach ($quantity as $_q => $q) :
 					if ($q > explode('_',$_q)[1]) :
@@ -46,20 +43,21 @@ class Dashboard extends Admin_Controller {
 					endif;
 				endforeach;
 			endif;
-
 			$save = $this->activity->create($post,$quantity,$price);
 			if ($save) :
 				$this->session->set_flashdata(array('class'=>'success','value'=>'ท่านได้ทำการบันทึกข้อมูลการให้บริการเรียบร้อยแล้ว'));
 				redirect('dashboard');
 			endif;
 		endif;
+
+		$customer_id = $this->input->get('customer_id');
 		$this->data['customer'] = array(''=>'เลือกรายการผู้ใช้บริการ');
 		$this->data['car'] = array(''=>'เลือกหมายเลขทะเบียนยานพาหนะ');
 		$customer = $this->customer->search('','','','id ASC')->result_array();
 		foreach ($customer as $cs) :
 			$this->data['customer'][$cs['id']] = $cs['fullname'];
 		endforeach;
-		$car = $this->car->search('','','','id ASC')->result_array();
+		$car = $this->car->search('customer_id = '.$customer_id,'','','id ASC')->result_array();
 		foreach ($car as $cr) :
 			$this->data['car'][$cr['id']] = $cr['identity'];
 		endforeach;
@@ -70,6 +68,7 @@ class Dashboard extends Admin_Controller {
 			->where('mu.activity_id',$id)
 			->get('material_usage as mu')
 			->result_array();
+		$this->data['customer_id'] = $customer_id;
 		$this->data['material'] = $this->material->search()->result_array();
 		$this->data['content'] = $this->load->view('dashboard/create', $this->data, TRUE);
 		$this->load->view('_layout_main', $this->data);

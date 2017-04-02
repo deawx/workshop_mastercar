@@ -19,6 +19,7 @@ class Customer extends Admin_Controller {
 	{
 		$post = $this->input->post();
 		if ($post) :
+			$post = (preg_replace("/[^@.\/a-zA-Z0-9ก-ฮ]+/", "", $post));
 			$save = $this->customer->create($post);
 			if ($save) :
 				$this->session->set_flashdata(array('class'=>'success','value'=>'ท่านได้ทำการบันทึกข้อมูลผู้ใช้บริการเรียบร้อยแล้ว'));

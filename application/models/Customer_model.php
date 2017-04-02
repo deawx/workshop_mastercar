@@ -14,17 +14,22 @@ class Customer_model extends MY_Model {
       array(
         'field' => 'card',
         'label' => 'หมายเลขบัตรประชาชน',
-        'rules' => 'required|max_length[13]|is_numeric'
+        'rules' => 'required|is_unique'
       ),
       array(
-        'field' => 'phone',
+        'field' => 'phone_home',
         'label' => 'หมายเลขโทรศัพท์',
-        'rules' => 'required|max_length[10]|is_numeric'
+        'rules' => 'required'
+      ),
+      array(
+        'field' => 'phone_mobile',
+        'label' => 'หมายเลขโทรศัพท์',
+        'rules' => 'required'
       ),
       array(
         'field' => 'email',
         'label' => 'ที่อยู่อีเมล์',
-        'rules' => 'required|max_length[100]|valid_email'
+        'rules' => 'required|valid_email|is_unique'
       ),
       array(
         'field' => 'address',

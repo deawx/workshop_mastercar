@@ -7,27 +7,37 @@
   </div>
   <div class="module-body">
     <div class="control-group">
+      <div class="control row-fluid">
+      </div>
+    </div>
+    <div class="control-group">
       <div class="controls row-fluid">
         <?=form_label('ชื่อ-นามสกุล','fullname',array('class'=>'span3'));?>
-        <?=form_input(array('name'=>'fullname','class'=>'span9','placeholder'=>'ชื่อ - นามสกุล'),set_value('fullname',$customer['fullname']));?>
+        <?=form_input(array('name'=>'fullname','class'=>'span9','placeholder'=>'ชื่อ - นามสกุล','required'=>TRUE),set_value('fullname',$customer['fullname']));?>
       </div>
     </div>
     <div class="control-group">
       <div class="controls row-fluid">
         <?=form_label('หมายเลขบัตรประชาชน','card',array('class'=>'span3'));?>
-        <?=form_input(array('name'=>'card','class'=>'span9','placeholder'=>'หมายเลขบัตรประชาชน'),set_value('card',$customer['card']));?>
+        <?=form_input(array('name'=>'card','class'=>'span9 card','placeholder'=>'หมายเลขบัตรประชาชน','required'=>TRUE),set_value('card',$customer['card']));?>
       </div>
     </div>
     <div class="control-group">
       <div class="controls row-fluid">
-        <?=form_label('หมายเลขโทรศัพท์','phone',array('class'=>'span3'));?>
-        <?=form_input(array('name'=>'phone','class'=>'span9','placeholder'=>'หมายเลขโทรศัพท์'),set_value('phone',$customer['phone']));?>
+        <?=form_label('หมายเลขโทรศัพท์','phone_home',array('class'=>'span3'));?>
+        <?=form_input(array('name'=>'phone_home','class'=>'span9 phone','placeholder'=>'หมายเลขโทรศัพท์บ้าน','required'=>TRUE),set_value('phone_home',$customer['phone_home']));?>
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls row-fluid">
+        <?=form_label('หมายเลขโทรศัพท์','phone_mobile',array('class'=>'span3'));?>
+        <?=form_input(array('name'=>'phone_mobile','class'=>'span9 phone','placeholder'=>'หมายเลขโทรศัพท์มือถือ','required'=>TRUE),set_value('phone_mobile',$customer['phone_mobile']));?>
       </div>
     </div>
     <div class="control-group">
       <div class="controls row-fluid">
         <?=form_label('ที่อยู่อีเมล์','email',array('class'=>'span3'));?>
-        <?=form_input(array('name'=>'email','class'=>'span9','placeholder'=>'ที่อยู่อีเมล์'),set_value('email',$customer['email']));?>
+        <?=form_input(array('name'=>'email','type'=>'email','class'=>'span9','placeholder'=>'ที่อยู่อีเมล์','required'=>TRUE),set_value('email',$customer['email']));?>
       </div>
     </div>
     <div class="control-group">
@@ -48,3 +58,10 @@
     <?=br().validation_errors('<div class="alert alert-warning">', '</div>');?>
   </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.card').inputmask("9 9999 99999 99 9");
+    $('.phone').inputmask("999 9999999");
+  });
+</script>

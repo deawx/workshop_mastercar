@@ -27,7 +27,11 @@ class Migration_Create_customer extends CI_Migration {
         'type' => 'VARCHAR',
         'constraint' => '50'
       ),
-      'phone' => array(
+      'phone_home' => array(
+        'type' => 'VARCHAR',
+        'constraint' => '15'
+      ),
+      'phone_mobile' => array(
         'type' => 'VARCHAR',
         'constraint' => '15'
       ),
